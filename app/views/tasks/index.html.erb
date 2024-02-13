@@ -1,0 +1,15 @@
+<h1>My tasks</h1>
+<% @tasks.each do |task| %>
+  <div class="d-flex align-items-center mt-2">
+    <% if task.completed %>
+      <i style="font-size: 15px;" class="fa-regular fa-square-check mx-1"></i>
+    <% else %>
+      <i style="font-size: 15px;" class="fa-regular fa-square mx-1"></i>
+    <% end %>
+    <%= link_to task.title, task_path(task), class: "mx-1" %>
+    <%= link_to task_path(task), data: { turbo_method: :delete, turbo_confirm: "Remove #{task.title}?" }, class: 'mx-1' do %>
+      <i style="font-size: 15px;" class="fa-solid fa-trash"></i>
+    <% end %>
+  </div>
+<% end %>
+<p><%= link_to '+ Add a new task', new_task_path %></p>
